@@ -1,0 +1,9 @@
+# Costum Makefile for build the kconfig-frontends
+
+all:
+	autoreconf -fi
+	./configure
+	$(MAKE) -f Makefile
+
+.SILENT: all
+.PHONY: all
