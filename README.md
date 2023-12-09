@@ -1,3 +1,5 @@
+# kconfig-frontends
+
 This package contains the kconfig frontends and parser.
 
 Kconfig is the configuration language used by the Linux kernel. This package
@@ -43,3 +45,38 @@ properly built if you link dynamically. The following just works as expected:
 Note: if using the git tree, or changing the autostuff sources, you'll first
 have to run:
     autoreconf -fi
+
+# Build
+
+For build all, run:
+
+```bash
+make -f Makefile.all
+```
+
+This must build all kconfig menus and parser (not gconf).
+
+For integrate the kconfig frontends into your project using kconfig for
+configuration, your Makefile can run the following commands:
+
+```bash
+mkdir tools
+cd tools
+wget https://github.com/R077A6r1an/kconfig-frontends/archive/refs/heads/master.zip
+unzip master.zip
+rm master.zip
+mv kconfig-frontends-master kconfig
+cd kconfig
+make -f Makefile.all
+```
+
+That builds directly the kconfig frontends inside your project.
+The frontends are accessible under the commands (expecting using from
+you root project directory and directory `tools` is inside it):
+
+```bash
+./tools/kconfig/frontends/conf/kconfig-conf     # kconfig-conf,  used for make config
+./tools/kconfig/frontends/mconf/kconfig-mconf   # kconfig-mconf, used for make menuconfig
+./tools/kconfig/frontends/qconf/kconfig-qconf   # kconfig-qconf, used for make xconfig
+./tools/kconfig/frontends/nconf/kconfig-nconf   # kconfig-nconf, used for make nconfig
+```
